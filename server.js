@@ -8,7 +8,7 @@ const port = process.env.PORT || 2931
 app.get('/weather/:city', async (req, res) => {
     const city = req.params.city
     const apiKey = process.env.OPENWEATHER_API_KEY
-    const url = `https://api.openweathermap.or/data/2.5/weather?1=${city}&appid=${apiKey}&units=metric`
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`
 
     try {
         const response = await axios.get(url)
@@ -25,7 +25,7 @@ app.get('/weather/:city', async (req, res) => {
             OutfitSuggestion = 'Its a clear sky, its perfect weather for light clothes like a t-shirt'
         }
 
-        res.json({city, temperatur, description, OutfitSuggestion})
+        res.json({city, temperature, description, OutfitSuggestion})
     }
     catch (error) {
         console.error(error)
